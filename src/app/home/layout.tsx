@@ -1,4 +1,3 @@
-import NavBar from "@/features/homeComponents/layout/NavBar";
 
 export default function HomeLayout({
   children,
@@ -6,8 +5,7 @@ export default function HomeLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="text-white min-h-screen pb-20 pl-20 pr-20 pt-10">
-      <NavBar />
+    <div className="text-black min-h-screen pb-20 pl-20 pr-20 pt-10">
       {children}
     </div>
   );

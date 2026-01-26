@@ -1,9 +1,15 @@
-import React from 'react'
+// HomePage.tsx
 
-const HomePage = () => {
+import Hero from "./Hero";
+import { NavBar } from "../layout/NavBar";
+export default function HomePage() {
   return (
-    <div className='text-black'>HomePage</div>
-  )
+    <div className="text-white">
+      <div>
+        <NavBar />
+        
+        <Hero />
+      </div>
+    </div>
+  );
 }
-
-export default HomePage
