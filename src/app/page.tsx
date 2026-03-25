@@ -1,5 +1,13 @@
-import { redirect } from "next/navigation";
+"use client";
+import Screen from "./Dropdown/Screen";
+
+
 
 export default function Page() {
-  redirect("/home");
+
+  return (
+    <>
+      <Screen />
+    </>
+  )
 }
