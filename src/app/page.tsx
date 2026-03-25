@@ -1,5 +1,4 @@
 "use client";
-import Screen from "./Dropdown/Screen";
 
 
 
@@ -7,7 +6,7 @@ export default function Page() {
 
   return (
     <>
-      <Screen />
+      <h1>hello</h1>
     </>
   )
 }
