@@ -31,6 +31,7 @@ export function useAuth(endpoint: string, redirectPath: string) {
             const res = await fetch(endpoint, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
+                credentials: 'include',
                 body: JSON.stringify(formData),
             });
 
@@ -39,8 +40,8 @@ export function useAuth(endpoint: string, redirectPath: string) {
 
             router.push(redirectPath);
             router.refresh();
-        } catch (err: any) {
-            setError(err.message);
+        } catch (error: unknown) {
+            setError(error instanceof Error ? error.message : 'Something went wrong');
         } finally {
             setLoading(false);
         }

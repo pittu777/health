@@ -30,7 +30,7 @@ export const protect = async (req: NextRequest) => {
         };
 
         return NextResponse.next();
-    } catch (err) {
+    } catch {
         return NextResponse.json({
             status: "fail",
             message: "Invalid token or internal server error"

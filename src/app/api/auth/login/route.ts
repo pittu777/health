@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/config/db";
 import userModel from "@/models/user.model";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
+import { setAuthCookies } from "@/lib/auth/session";
 
 export async function POST(request: Request) {
     try {
@@ -20,18 +20,8 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
         }
 
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET!, {
-            expiresIn: "1d",
-        });
-
         const cookieStore = await cookies();
-        cookieStore.set("token", token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
-            sameSite: "strict",
-            path: "/",
-            maxAge: 60 * 60 * 24,
-        })
+        setAuthCookies(cookieStore, { userId: user._id.toString() });
 
         return NextResponse.json({
             message: "Login successful",
@@ -40,7 +30,8 @@ export async function POST(request: Request) {
 
 
 
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error: unknown) {
+        const message = error instanceof Error ? error.message : "Failed to login";
+        return NextResponse.json({ error: message }, { status: 500 });
     }
 }
