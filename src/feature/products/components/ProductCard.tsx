@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingBag, Star } from "lucide-react";
+import { Star } from "lucide-react";
 import type { Product } from "@/lib/products";
 import { useAppDispatch } from "@/store/hooks";
 import { addItem } from "@/store/cartSlice";
+import { Button } from "@/components/ui/button";
 
 interface ProductCardProps {
     product: Product;
@@ -16,10 +17,10 @@ export default function ProductCard({ product }: ProductCardProps) {
 
     if (product.featured) {
         return (
-            <article className="grid overflow-hidden rounded-[22px] bg-white shadow-[0_18px_40px_-32px_rgba(15,23,42,0.4)] md:col-span-2 md:grid-cols-[220px_minmax(0,1fr)]">
+            <article className="grid overflow-hidden rounded-[22px] bg-transparent md:col-span-2 md:grid-cols-[220px_minmax(0,1fr)]">
                 <Link
                     href={`/product/${product.id}`}
-                    className="flex items-center justify-center bg-[#f5f8fc] p-6"
+                    className="flex items-center justify-center p-6"
                 >
                     <Image
                         src={product.image}
@@ -64,10 +65,10 @@ export default function ProductCard({ product }: ProductCardProps) {
     }
 
     return (
-        <article className="overflow-hidden rounded-[18px] bg-white shadow-[0_18px_40px_-32px_rgba(15,23,42,0.4)]">
+        <article className="overflow-hidden rounded-[18px] bg-transparent">
             <Link
                 href={`/product/${product.id}`}
-                className="flex h-[150px] items-center justify-center bg-[#f8fbff] p-4"
+                className="flex h-[150px] items-center justify-center p-4"
             >
                 <Image
                     src={product.image}
@@ -77,7 +78,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     className="h-full w-full object-contain"
                 />
             </Link>
-            <div className="space-y-2 p-4">
+            <div className="space-y-2 px-4 pb-2 pt-1">
                 <div>
                     <h3 className="text-[1.1rem] font-semibold leading-tight text-slate-900">
                         {product.name}
@@ -86,14 +87,14 @@ export default function ProductCard({ product }: ProductCardProps) {
                         ${product.price}
                     </p>
                 </div>
-                <button
+                <Button
                     type="button"
                     onClick={() => dispatch(addItem(product))}
-                    className="inline-flex items-center gap-2 rounded-lg bg-[#0d57a7] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#0b4b90]"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#0d57a7] px-4 py-2 text-sm font-medium text-white transition hover:bg-[#0b4b90] w-full cursor-pointer"
                 >
-                    <ShoppingBag className="h-4 w-4" />
+
                     Add to Cart
-                </button>
+                </Button>
             </div>
         </article>
     );

@@ -8,6 +8,7 @@ import { removeItem, updateQuantity } from "@/store/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import StorefrontHeader from "@/feature/storefront/components/StorefrontHeader";
 import StorefrontShell from "@/feature/storefront/components/StorefrontShell";
+import { Button } from "@/components/ui/button";
 
 export default function CartPageClient() {
     const dispatch = useAppDispatch();
@@ -94,7 +95,7 @@ export default function CartPageClient() {
                                                                 })
                                                             )
                                                         }
-                                                        className="rounded-full bg-slate-100 px-3 py-1 text-slate-900"
+                                                        className="rounded-full bg-slate-100 px-3 py-1 text-slate-900 cursor-pointer"
                                                     >
                                                         -
                                                     </button>
@@ -111,22 +112,22 @@ export default function CartPageClient() {
                                                                 })
                                                             )
                                                         }
-                                                        className="rounded-full bg-[#0d57a7] px-3 py-1 text-white"
+                                                        className="rounded-full bg-[#0d57a7] px-3 py-1 text-white cursor-pointer"
                                                     >
                                                         +
                                                     </button>
                                                 </div>
 
-                                                <button
+                                                <Button
                                                     type="button"
                                                     onClick={() =>
                                                         dispatch(removeItem(item.product.id))
                                                     }
-                                                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm text-slate-700"
+                                                    className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm text-slate-700 cursor-pointer"
                                                 >
                                                     <Trash2 className="h-4 w-4" />
                                                     Remove
-                                                </button>
+                                                </Button>
                                             </div>
                                         </div>
                                     </div>

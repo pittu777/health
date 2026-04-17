@@ -20,7 +20,7 @@ export default function StorefrontHeader({
     const userInitial = currentUser?.name?.trim().charAt(0).toUpperCase() ?? "U";
 
     return (
-        <header className="rounded-t-[24px] bg-[#0d57a7] px-6 py-5 text-white shadow-[0_22px_40px_-28px_rgba(13,87,167,0.8)]">
+        <header className="bg-[#0d57a7] px-6 py-5 text-white shadow-[0_22px_40px_-28px_rgba(13,87,167,0.8)]">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <Link href="/" className="text-[2rem] font-bold leading-none tracking-tight">
                     Logo

@@ -4,9 +4,9 @@ import ProductDetailClient from "@/feature/products/components/ProductDetailClie
 import { getProductById } from "@/lib/products";
 
 interface ProductPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
 export const metadata: Metadata = {
@@ -14,8 +14,9 @@ export const metadata: Metadata = {
     description: "View detailed product information, pricing, and reviews.",
 };
 
-export default function ProductPage({ params }: ProductPageProps) {
-    const product = getProductById(params.id);
+export default async function ProductPage({ params }: ProductPageProps) {
+    const { id } = await params;
+    const product = getProductById(id);
 
     if (!product) {
         notFound();
