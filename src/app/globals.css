@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@source "../features/**/*.{ts,tsx}";
+@source "../feature/**/*.{ts,tsx}";
 @source "../components/**/*.{ts,tsx}";
 
 @custom-variant dark (&:is(.dark *));
@@ -127,6 +127,6 @@
     @apply bg-background text-foreground;
   }
   html {
-    @apply font-serif;
+    @apply font-sans;
   }
 }

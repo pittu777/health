@@ -26,7 +26,7 @@ function CartStorageSync() {
                 dispatch(loadCart(parsed));
             }
         } catch {
-            // ignore invalid storage data
+
         }
     }, [dispatch]);
 
