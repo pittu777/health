@@ -168,7 +168,8 @@ export default function CartPageClient() {
                         <button
                             type="button"
                             disabled={items.length === 0}
-                            className="mt-6 w-full rounded-lg bg-[#0d57a7] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#0b4b90] disabled:cursor-not-allowed disabled:bg-slate-300"
+                            onClick={() => alert("order placed")}
+                            className="mt-6 w-full rounded-lg bg-[#0d57a7] px-6 py-4 text-base font-semibold text-white transition hover:bg-[#0b4b90] disabled:cursor-not-allowed disabled:bg-slate-300 cursor-pointer"
                         >
                             Checkout
                         </button>
