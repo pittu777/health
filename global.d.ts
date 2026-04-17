@@ -9,3 +9,7 @@ declare module 'next/server' {
         };
     }
 }
+
+declare module '*.css';
+declare module '*.scss';
+declare module '*.sass';
