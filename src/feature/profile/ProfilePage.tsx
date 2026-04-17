@@ -12,9 +12,9 @@ export default function ProfilePage({ user }: ProfilePageProps) {
     return (
         <StoreLayoutShell header={<StoreLayoutHeader />}>
             <div className="mx-auto w-full max-w-3xl px-4 sm:px-6">
-                <div className="rounded-[20px] bg-white p-5 sm:p-8 shadow-[0_20px_35px_-30px_rgba(15,23,42,0.45)]">
+                <div className="rounded-4xl bg-white p-5 sm:p-8 shadow-[0_20px_35px_-30px_rgba(15,23,42,0.45)]">
 
-                    {/* HEADER */}
+
                     <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
 
                         {/* USER INFO */}
@@ -33,17 +33,17 @@ export default function ProfilePage({ user }: ProfilePageProps) {
                             </div>
                         </div>
 
-                        {/* LOGOUT */}
+
                         <div className="w-full sm:w-auto">
                             <LogoutButton />
                         </div>
                     </div>
 
-                    {/* INFO CARDS */}
+
                     <div className="mt-6 sm:mt-8 grid gap-3 sm:gap-4 sm:grid-cols-2">
 
-                        {/* NAME */}
-                        <div className="rounded-[16px] bg-[#f8fbff] p-4 sm:p-5">
+
+                        <div className="rounded-3xl bg-[#f8fbff] p-4 sm:p-5">
                             <div className="flex items-center gap-2 sm:gap-3 text-[#0d57a7]">
                                 <UserRound className="h-4 w-4 sm:h-5 sm:w-5" />
                                 <p className="text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.2em]">
@@ -55,8 +55,8 @@ export default function ProfilePage({ user }: ProfilePageProps) {
                             </p>
                         </div>
 
-                        {/* EMAIL */}
-                        <div className="rounded-[16px] bg-[#f8fbff] p-4 sm:p-5">
+
+                        <div className="rounded-3xl bg-[#f8fbff] p-4 sm:p-5">
                             <div className="flex items-center gap-2 sm:gap-3 text-[#0d57a7]">
                                 <Mail className="h-4 w-4 sm:h-5 sm:w-5" />
                                 <p className="text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.2em]">
@@ -68,8 +68,8 @@ export default function ProfilePage({ user }: ProfilePageProps) {
                             </p>
                         </div>
 
-                        {/* STATUS */}
-                        <div className="rounded-[16px] bg-[#f8fbff] p-4 sm:p-5 sm:col-span-2">
+
+                        <div className="rounded-3xl bg-[#f8fbff] p-4 sm:p-5 sm:col-span-2">
                             <div className="flex items-center gap-2 sm:gap-3 text-[#0d57a7]">
                                 <ShieldCheck className="h-4 w-4 sm:h-5 sm:w-5" />
                                 <p className="text-xs sm:text-sm uppercase tracking-[0.15em] sm:tracking-[0.2em]">

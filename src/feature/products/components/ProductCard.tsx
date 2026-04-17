@@ -15,6 +15,9 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
     const dispatch = useAppDispatch();
 
+
+    // creadted featured value because in the assignment in provided UI we have smartphone image where it looks different so is i add this you can find the difference by setting featured value to true to any product
+
     if (product.featured) {
         return (
             <article className="grid overflow-hidden rounded-[22px] bg-transparent md:col-span-2 md:grid-cols-[220px_minmax(0,1fr)]">
@@ -27,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                         alt={product.name}
                         width={420}
                         height={420}
-                        className="h-[280px] w-auto object-contain"
+                        className="h-70 w-auto object-contain"
                     />
                 </Link>
                 <div className="flex flex-col justify-between p-6">
@@ -68,7 +71,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <article className="overflow-hidden rounded-[18px] bg-transparent">
             <Link
                 href={`/product/${product.id}`}
-                className="flex h-[150px] items-center justify-center p-4"
+                className="flex h-37.5 items-center justify-center p-4"
             >
                 <Image
                     src={product.image}
