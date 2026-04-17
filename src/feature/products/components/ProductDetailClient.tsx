@@ -7,8 +7,8 @@ import { useState } from "react";
 import type { Product } from "@/lib/products";
 import { addItem } from "@/store/cartSlice";
 import { useAppDispatch } from "@/store/hooks";
-import StorefrontHeader from "@/feature/storefront/components/StorefrontHeader";
-import StorefrontShell from "@/feature/storefront/components/StorefrontShell";
+import StoreLayoutHeader from "@/feature/layout/components/StoreLayoutHeader";
+import StoreLayoutShell from "@/feature/layout/components/StoreLayoutShell";
 
 interface ProductDetailClientProps {
     product: Product;
@@ -27,8 +27,8 @@ export default function ProductDetailClient({
     };
 
     return (
-        <StorefrontShell
-            header={<StorefrontHeader />}
+        <StoreLayoutShell
+            header={<StoreLayoutHeader />}
         >
             <div className="space-y-6">
                 <div className="flex items-center gap-2 text-sm text-slate-500">
@@ -123,6 +123,6 @@ export default function ProductDetailClient({
                     </div>
                 </div>
             </div>
-        </StorefrontShell>
+        </StoreLayoutShell>
     );
 }

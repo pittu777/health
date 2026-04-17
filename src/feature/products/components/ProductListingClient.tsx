@@ -4,8 +4,8 @@ import { useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { Product } from "@/lib/products";
 import { getUniqueBrands, getUniqueCategories } from "@/lib/products";
-import StorefrontHeader from "@/feature/storefront/components/StorefrontHeader";
-import StorefrontShell from "@/feature/storefront/components/StorefrontShell";
+import StoreLayoutHeader from "@/feature/layout/components/StoreLayoutHeader";
+import StoreLayoutShell from "@/feature/layout/components/StoreLayoutShell";
 import ProductCard from "./ProductCard";
 
 interface ProductListingClientProps {
@@ -116,16 +116,16 @@ export default function ProductListingClient({
     };
 
     return (
-        <StorefrontShell
+        <StoreLayoutShell
             header={
-                <StorefrontHeader
+                <StoreLayoutHeader
                     searchValue={localSearch}
                     onSearchChange={handleSearchChange}
                 />
             }
         >
-            <div className="grid gap-6 xl:grid-cols-[160px_160px_minmax(0,1fr)]">
-                <aside className="space-y-5">
+            <div className="grid h-full min-h-0 gap-8 xl:grid-cols-[220px_minmax(0,1fr)]">
+                <aside className="space-y-5 xl:overflow-hidden">
                     <div className="rounded-[14px] bg-[#0d57a7] p-5 text-white shadow-[0_20px_35px_-30px_rgba(13,87,167,0.95)]">
                         <h2 className="text-[2rem] font-semibold leading-none">Filters</h2>
 
@@ -168,9 +168,7 @@ export default function ProductListingClient({
                             </div>
                         </div>
                     </div>
-                </aside>
 
-                <aside className="space-y-5">
                     <div className="rounded-[14px] bg-white p-5 shadow-[0_20px_35px_-30px_rgba(15,23,42,0.45)]">
                         <h2 className="text-[2rem] font-semibold leading-none text-slate-900">
                             Caryroy
@@ -208,7 +206,7 @@ export default function ProductListingClient({
                     </div>
                 </aside>
 
-                <section>
+                <section className="min-h-0 overflow-y-auto pr-2">
                     <h1 className="text-[2.2rem] font-semibold leading-none text-slate-900">
                         Product Listing
                     </h1>
@@ -231,6 +229,6 @@ export default function ProductListingClient({
                     </div>
                 </section>
             </div>
-        </StorefrontShell>
+        </StoreLayoutShell>
     );
 }

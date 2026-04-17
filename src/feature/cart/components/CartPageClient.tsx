@@ -6,8 +6,8 @@ import { ShoppingCart, Trash2 } from "lucide-react";
 import { useMemo } from "react";
 import { removeItem, updateQuantity } from "@/store/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import StorefrontHeader from "@/feature/storefront/components/StorefrontHeader";
-import StorefrontShell from "@/feature/storefront/components/StorefrontShell";
+import StoreLayoutHeader from "@/feature/layout/components/StoreLayoutHeader";
+import StoreLayoutShell from "@/feature/layout/components/StoreLayoutShell";
 import { Button } from "@/components/ui/button";
 
 export default function CartPageClient() {
@@ -20,8 +20,8 @@ export default function CartPageClient() {
     );
 
     return (
-        <StorefrontShell
-            header={<StorefrontHeader />}
+        <StoreLayoutShell
+            header={<StoreLayoutHeader />}
         >
             <div className="space-y-8">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -175,6 +175,6 @@ export default function CartPageClient() {
                     </aside>
                 </div>
             </div>
-        </StorefrontShell>
+        </StoreLayoutShell>
     );
 }

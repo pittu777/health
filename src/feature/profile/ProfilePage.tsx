@@ -1,8 +1,8 @@
 import { Mail, ShieldCheck, UserRound } from "lucide-react";
 import LogoutButton from "@/feature/auth/Logout";
 import type { AuthenticatedUser } from "@/lib/auth";
-import StorefrontHeader from "@/feature/storefront/components/StorefrontHeader";
-import StorefrontShell from "@/feature/storefront/components/StorefrontShell";
+import StoreLayoutHeader from "@/feature/layout/components/StoreLayoutHeader";
+import StoreLayoutShell from "@/feature/layout/components/StoreLayoutShell";
 
 interface ProfilePageProps {
     user: AuthenticatedUser;
@@ -10,8 +10,8 @@ interface ProfilePageProps {
 
 export default function ProfilePage({ user }: ProfilePageProps) {
     return (
-        <StorefrontShell
-            header={<StorefrontHeader />}
+        <StoreLayoutShell
+            header={<StoreLayoutHeader />}
         >
             <div className="mx-auto max-w-3xl">
                 <div className="rounded-[24px] bg-white p-8 shadow-[0_20px_35px_-30px_rgba(15,23,42,0.45)]">
@@ -73,6 +73,6 @@ export default function ProfilePage({ user }: ProfilePageProps) {
                     </div>
                 </div>
             </div>
-        </StorefrontShell>
+        </StoreLayoutShell>
     );
 }

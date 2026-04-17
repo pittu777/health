@@ -4,15 +4,15 @@ import Link from "next/link";
 import { Search, ShoppingCart, UserCircle2 } from "lucide-react";
 import { useAppSelector } from "@/store/hooks";
 
-interface StorefrontHeaderProps {
+interface StoreLayoutHeaderProps {
     searchValue?: string;
     onSearchChange?: (value: string) => void;
 }
 
-export default function StorefrontHeader({
+export default function StoreLayoutHeader({
     searchValue = "",
     onSearchChange,
-}: StorefrontHeaderProps) {
+}: StoreLayoutHeaderProps) {
     const cartQuantity = useAppSelector((state) =>
         state.cart.items.reduce((sum, item) => sum + item.quantity, 0)
     );
@@ -20,7 +20,7 @@ export default function StorefrontHeader({
     const userInitial = currentUser?.name?.trim().charAt(0).toUpperCase() ?? "U";
 
     return (
-        <header className="bg-[#0d57a7] px-6 py-5 text-white shadow-[0_22px_40px_-28px_rgba(13,87,167,0.8)]">
+        <header className="sticky top-0 z-30 bg-[#0d57a7] px-6 py-5 text-white shadow-[0_22px_40px_-28px_rgba(13,87,167,0.8)]">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <Link href="/" className="text-[2rem] font-bold leading-none tracking-tight">
                     Logo

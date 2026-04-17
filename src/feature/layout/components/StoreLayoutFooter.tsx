@@ -1,8 +1,8 @@
 import { Facebook, Instagram, Twitter } from "lucide-react";
 
-export default function StorefrontFooter() {
+export default function StoreLayoutFooter() {
     return (
-        <footer className="rounded-b-[24px] bg-[#0a326d] px-6 py-10 text-white sm:px-8">
+        <footer className="bg-[#0a326d] px-4 py-4 text-white sm:px-8">
             <div className="grid gap-8 md:grid-cols-3">
                 <div>
                     <h2 className="text-[1.7rem] font-semibold">Filters</h2>
