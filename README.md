@@ -79,7 +79,17 @@ A polished **Next.js** storefront demo with product listing, filtering, cart exp
 
 ## Development
 
-Install dependencies and run locally:
+# Install dependencies and run locally:
+
+- env example :
+
+- dev = "development";
+
+- MONGO_URI = url here
+
+- JWT_EXPIRES_IN = "30d"
+- JWT_SECRET = ""
+- REFRESH_TOKEN_SECRET = ""
 
 ```bash
 npm install
