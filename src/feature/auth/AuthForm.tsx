@@ -115,7 +115,14 @@ export default function AuthForm({ type }: AuthFormProps) {
                         {loading ? "Processing..." : config.buttonText}
                         {!loading ? <ChevronRight className="h-4 w-4" /> : null}
                     </Button>
+
                 </form>
+                <Link
+                    href="/"
+                    className="inline-flex items-center justify-center rounded-full bg-[#0f4fa8] px-5 py-2 mt-2 text-sm font-semibold text-white w-full"
+                >
+                    Skip login for now..!
+                </Link>
 
                 <p className="mt-6 text-center text-sm text-slate-600">
                     {isLogin ? "Don't have an account? " : "Already have an account? "}
@@ -126,6 +133,7 @@ export default function AuthForm({ type }: AuthFormProps) {
                         {isLogin ? "Register here" : "Login here"}
                     </Link>
                 </p>
+
             </div>
         </div>
     );

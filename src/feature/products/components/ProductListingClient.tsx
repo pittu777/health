@@ -4,8 +4,8 @@ import { useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { Product } from "@/lib/products";
 import { getUniqueBrands, getUniqueCategories } from "@/lib/products";
-import StoreLayoutHeader from "@/feature/layout/components/StoreLayoutHeader";
-import StoreLayoutShell from "@/feature/layout/components/StoreLayoutShell";
+import StoreLayoutHeader from "@/feature/navbar/components/Header";
+import StoreLayoutShell from "@/components/layout/StoreLayoutShell";
 import ProductCard from "./ProductCard";
 
 interface ProductListingClientProps {
@@ -36,43 +36,37 @@ export default function ProductListingClient({
     const brands = ["All", ...getUniqueBrands()];
 
     const filteredProducts = useMemo(() => {
-        const searchQuery = (params.get("search") ?? "").toLowerCase();
-        const selectedCategory = params.get("category") ?? "All";
-        const selectedBrand = params.get("brand") ?? "All";
-        const rawPrice = Number(params.get("price") ?? String(DEFAULT_MAX_PRICE));
+        const searchQuery = localSearch.toLowerCase();
 
         return products.filter((product) => {
             const matchesSearch =
                 product.name.toLowerCase().includes(searchQuery) ||
                 product.description.toLowerCase().includes(searchQuery);
+
             const matchesCategory =
-                selectedCategory === "All" || product.category === selectedCategory;
+                category === "All" || product.category === category;
+
             const matchesBrand =
-                selectedBrand === "All" || product.brand === selectedBrand;
-            const matchesPrice = product.price <= rawPrice;
+                brand === "All" || product.brand === brand;
+
+            const matchesPrice = product.price <= priceRange;
 
             return (
-                matchesSearch && matchesCategory && matchesBrand && matchesPrice
+                matchesSearch &&
+                matchesCategory &&
+                matchesBrand &&
+                matchesPrice
             );
         });
-    }, [products, params]);
+    }, [products, localSearch, category, brand, priceRange]);
 
     function pushFilters(filters: Record<string, string | undefined>) {
         const searchParams = new URLSearchParams();
 
         Object.entries(filters).forEach(([key, value]) => {
-            if (!value) {
-                return;
-            }
-
-            if ((key === "category" || key === "brand") && value === "All") {
-                return;
-            }
-
-            if (key === "search" && value.trim() === "") {
-                return;
-            }
-
+            if (!value) return;
+            if ((key === "category" || key === "brand") && value === "All") return;
+            if (key === "search" && value.trim() === "") return;
             searchParams.set(key, value);
         });
 
@@ -107,12 +101,6 @@ export default function ProductListingClient({
 
     const handlePriceChange = (value: number) => {
         setPriceRange(value);
-        pushFilters({
-            category,
-            brand,
-            price: String(value),
-            search: localSearch,
-        });
     };
 
     return (
@@ -124,8 +112,8 @@ export default function ProductListingClient({
                 />
             }
         >
-            <div className="grid h-full min-h-0 gap-8 xl:grid-cols-[220px_minmax(0,1fr)]">
-                <aside className="space-y-5 xl:overflow-hidden">
+            <div className="grid gap-8 xl:grid-cols-[220px_minmax(0,1fr)]">
+                <aside className="space-y-5 xl:sticky xl:top-6 xl:self-start">
                     <div className="rounded-[14px] bg-[#0d57a7] p-5 text-white shadow-[0_20px_35px_-30px_rgba(13,87,167,0.95)]">
                         <h2 className="text-[2rem] font-semibold leading-none">Filters</h2>
 
@@ -139,11 +127,10 @@ export default function ProductListingClient({
                                     className="flex items-center gap-3 text-left text-sm text-white/95"
                                 >
                                     <span
-                                        className={`h-4 w-4 rounded-full border ${
-                                            category === option
+                                        className={`h-4 w-4 rounded-full border ${category === option
                                                 ? "border-white bg-white shadow-[inset_0_0_0_4px_#0d57a7]"
                                                 : "border-white/60"
-                                        }`}
+                                            }`}
                                     />
                                     {option}
                                 </button>
@@ -157,21 +144,29 @@ export default function ProductListingClient({
                                 min="0"
                                 max="1000"
                                 value={priceRange}
-                                onChange={(event) =>
-                                    handlePriceChange(Number(event.target.value))
+                                onChange={(e) =>
+                                    handlePriceChange(Number(e.target.value))
+                                }
+                                onMouseUp={() =>
+                                    pushFilters({
+                                        category,
+                                        brand,
+                                        price: String(priceRange),
+                                        search: localSearch,
+                                    })
                                 }
                                 className="mt-4 w-full accent-white"
                             />
                             <div className="mt-1 flex justify-between text-sm text-white">
                                 <span>0</span>
-                                <span>1000</span>
+                                <span>₹{priceRange}</span>
                             </div>
                         </div>
                     </div>
 
                     <div className="rounded-[14px] bg-white p-5 shadow-[0_20px_35px_-30px_rgba(15,23,42,0.45)]">
                         <h2 className="text-[2rem] font-semibold leading-none text-slate-900">
-                            Caryroy
+                            Category
                         </h2>
 
                         <div className="mt-6 space-y-3">
@@ -186,11 +181,10 @@ export default function ProductListingClient({
                                     className="flex items-center gap-3 text-left text-sm text-slate-700"
                                 >
                                     <span
-                                        className={`h-4 w-4 rounded-full border ${
-                                            brand === option
+                                        className={`h-4 w-4 rounded-full border ${brand === option
                                                 ? "border-[#0d57a7] bg-white shadow-[inset_0_0_0_4px_#0d57a7]"
                                                 : "border-slate-300"
-                                        }`}
+                                            }`}
                                     />
                                     {option}
                                 </button>
@@ -200,13 +194,13 @@ export default function ProductListingClient({
                         <div className="mt-8">
                             <p className="text-lg font-semibold text-slate-900">Price</p>
                             <div className="mt-3 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-500">
-                                {priceRange}
+                                ₹{priceRange}
                             </div>
                         </div>
                     </div>
                 </aside>
 
-                <section className="min-h-0 overflow-y-auto pr-2">
+                <section className="pr-2">
                     <h1 className="text-[2.2rem] font-semibold leading-none text-slate-900">
                         Product Listing
                     </h1>

@@ -6,8 +6,8 @@ import { ShoppingCart, Trash2 } from "lucide-react";
 import { useMemo } from "react";
 import { removeItem, updateQuantity } from "@/store/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import StoreLayoutHeader from "@/feature/layout/components/StoreLayoutHeader";
-import StoreLayoutShell from "@/feature/layout/components/StoreLayoutShell";
+import StoreLayoutHeader from "@/feature/navbar/components/Header";
+import StoreLayoutShell from "@/components/layout/StoreLayoutShell";
 import { Button } from "@/components/ui/button";
 
 export default function CartPageClient() {

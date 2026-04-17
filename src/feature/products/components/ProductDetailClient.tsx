@@ -7,8 +7,8 @@ import { useState } from "react";
 import type { Product } from "@/lib/products";
 import { addItem } from "@/store/cartSlice";
 import { useAppDispatch } from "@/store/hooks";
-import StoreLayoutHeader from "@/feature/layout/components/StoreLayoutHeader";
-import StoreLayoutShell from "@/feature/layout/components/StoreLayoutShell";
+import StoreLayoutHeader from "@/feature/navbar/components/Header";
+import StoreLayoutShell from "@/components/layout/StoreLayoutShell";
 
 interface ProductDetailClientProps {
     product: Product;

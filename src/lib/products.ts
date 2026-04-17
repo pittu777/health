@@ -92,7 +92,7 @@ export const products: Product[] = [
         description: "Lorem ipsum dolor amet, consectetur euisagend. A polished smartphone built for speed and clarity.",
         image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=900&q=80",
         rating: 4.9,
-        featured: true,
+        // featured: true,
     },
     {
         id: "bluetooth-speaker",
