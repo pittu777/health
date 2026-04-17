@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import { loadCart } from "@/store/cartSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { clearUser, setUser, type AuthUser } from "@/store/userSlice";
+import SessionRefresh from "@/feature/auth/SessionRefresh";
 
 const CART_STORAGE_KEY = "health-cart";
 
@@ -35,10 +37,40 @@ function CartStorageSync() {
     return null;
 }
 
-export default function ReduxProvider({ children }: PropsWithChildren<{}>) {
+type SessionBootstrapProps = {
+    initialUser: AuthUser | null;
+};
+
+function SessionBootstrap({ initialUser }: SessionBootstrapProps) {
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        if (initialUser) {
+            dispatch(setUser(initialUser));
+            return;
+        }
+
+        dispatch(clearUser());
+    }, [dispatch, initialUser]);
+
+    return null;
+}
+
+type ReduxProviderProps = PropsWithChildren<{
+    initialUser: AuthUser | null;
+    shouldRefreshSession: boolean;
+}>;
+
+export default function ReduxProvider({
+    children,
+    initialUser,
+    shouldRefreshSession,
+}: ReduxProviderProps) {
     return (
         <Provider store={store}>
+            <SessionBootstrap initialUser={initialUser} />
             <CartStorageSync />
+            <SessionRefresh enabled={shouldRefreshSession} />
             {children}
         </Provider>
     );

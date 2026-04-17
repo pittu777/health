@@ -10,6 +10,12 @@ import {
     verifyRefreshToken,
 } from "@/lib/auth/session";
 
+export interface AuthenticatedUser {
+    id: string;
+    name: string;
+    email: string;
+}
+
 export async function getCurrentSession() {
     const cookieStore = await cookies();
     const accessToken = getAccessTokenFromCookies(cookieStore);
@@ -46,13 +52,20 @@ export async function getCurrentSession() {
     }
 
     await connectDB();
-    const user = await userModel.findById(userId).select("-password");
+    const user = await userModel.findById(userId).select("name email");
 
     if (!user) {
         return { user: null, shouldRefreshTokens: false };
     }
 
-    return { user, shouldRefreshTokens };
+    return {
+        user: {
+            id: user._id.toString(),
+            name: user.name,
+            email: user.email,
+        } satisfies AuthenticatedUser,
+        shouldRefreshTokens,
+    };
 }
 
 export async function getCurrentUser() {

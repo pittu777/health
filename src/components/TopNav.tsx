@@ -11,6 +11,8 @@ interface TopNavProps {
 
 export default function TopNav({ searchValue, onSearchChange }: TopNavProps) {
     const cartQuantity = useAppSelector((state) => state.cart.items.reduce((sum, item) => sum + item.quantity, 0));
+    const currentUser = useAppSelector((state) => state.user.currentUser);
+    const userInitial = currentUser?.name?.trim().charAt(0).toUpperCase() ?? "U";
 
     return (
         <header className="sticky top-0 z-20 bg-slate-950/95 border-b border-slate-800/80 backdrop-blur-sm">
@@ -48,9 +50,17 @@ export default function TopNav({ searchValue, onSearchChange }: TopNavProps) {
                             </span>
                         ) : null}
                     </Link>
-                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-slate-200 shadow-sm">
-                        <UserCircle2 className="h-6 w-6" />
-                    </div>
+                    <Link
+                        href="/profile"
+                        aria-label="Open profile"
+                        className="inline-flex h-11 min-w-11 items-center justify-center rounded-full bg-slate-900 px-3 text-slate-200 shadow-sm transition hover:bg-slate-800"
+                    >
+                        {currentUser ? (
+                            <span className="text-sm font-semibold text-white">{userInitial}</span>
+                        ) : (
+                            <UserCircle2 className="h-6 w-6" />
+                        )}
+                    </Link>
                 </div>
             </div>
         </header>
