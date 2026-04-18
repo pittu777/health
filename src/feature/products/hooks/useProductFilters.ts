@@ -1,4 +1,4 @@
-import { useMemo, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const DEFAULT_MAX_PRICE = 1000;

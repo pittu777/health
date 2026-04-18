@@ -14,8 +14,6 @@ export default function Filters() {
         handleCategoryChange,
         handlePriceChange,
         priceRange,
-        pushFilters,
-        localSearch,
     } = useProductListing();
 
     return (
