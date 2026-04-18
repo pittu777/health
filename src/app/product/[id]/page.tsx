@@ -16,6 +16,10 @@ export const metadata: Metadata = {
 
 export default async function ProductPage({ params }: ProductPageProps) {
     const { id } = await params;
+
+
+    await new Promise(resolve => setTimeout(resolve, 600));
+
     const product = getProductById(id);
 
     if (!product) {

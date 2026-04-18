@@ -70,6 +70,7 @@ export async function getCurrentSession() {
 
 export async function getCurrentUser() {
     try {
+        await new Promise(resolve => setTimeout(resolve, 500));
         const { user } = await getCurrentSession();
         return user;
     } catch {

@@ -68,7 +68,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     }
 
     return (
-        <article className="overflow-hidden rounded-[18px] bg-transparent">
+        <article className="overflow-hidden rounded-[18px] bg-gray-100">
             <Link
                 href={`/product/${product.id}`}
                 className="flex h-37.5 items-center justify-center p-4"
