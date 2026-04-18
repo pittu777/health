@@ -42,7 +42,7 @@ function CartHeader({ itemCount }: { itemCount: number }) {
                     Shopping Cart
                 </p>
                 <h1 className="mt-2 text-4xl font-semibold text-slate-900">
-                    Your selected items
+                    Your selected items {itemCount}
                 </h1>
             </div>
 

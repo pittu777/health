@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ChevronRight, LockKeyhole, Mail, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from "./hooks/useAuth";
 
 interface AuthFormProps {
     type: "login" | "register";
