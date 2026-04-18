@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const AUTH_ROUTES = new Set(["/login", "/register"]);
+const PUBLIC_ROUTES = new Set(["/"]);
 
 function isPublicAsset(pathname: string) {
     return pathname.startsWith("/_next") || pathname.includes(".");
@@ -17,7 +18,7 @@ export function middleware(request: NextRequest) {
         Boolean(request.cookies.get("accessToken")?.value) ||
         Boolean(request.cookies.get("refreshToken")?.value);
 
-    if (!hasSession && !AUTH_ROUTES.has(pathname)) {
+    if (!hasSession && !AUTH_ROUTES.has(pathname) && !PUBLIC_ROUTES.has(pathname)) {
         const loginUrl = new URL("/login", request.url);
         return NextResponse.redirect(loginUrl);
     }
