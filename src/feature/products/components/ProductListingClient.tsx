@@ -125,21 +125,38 @@ export default function ProductListingClient({
         [products]
     );
 
-    const contextValue: ProductListingContextType = {
-        localSearch,
-        priceRange,
-        category,
-        brand,
-        categories,
-        brands,
-        handleSearchChange,
-        handleCategoryChange,
-        handleBrandChange,
-        handlePriceChange,
-        pushFilters,
-        filteredProducts,
-        isLoading,
-    };
+    const contextValue: ProductListingContextType = useMemo(
+        () => ({
+            localSearch,
+            priceRange,
+            category,
+            brand,
+            categories,
+            brands,
+            handleSearchChange,
+            handleCategoryChange,
+            handleBrandChange,
+            handlePriceChange,
+            pushFilters,
+            filteredProducts,
+            isLoading,
+        }),
+        [
+            localSearch,
+            priceRange,
+            category,
+            brand,
+            categories,
+            brands,
+            handleSearchChange,
+            handleCategoryChange,
+            handleBrandChange,
+            handlePriceChange,
+            pushFilters,
+            filteredProducts,
+            isLoading,
+        ]
+    );
 
     return (
         <ProductListingContext.Provider value={contextValue}>

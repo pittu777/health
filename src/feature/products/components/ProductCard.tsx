@@ -1,5 +1,6 @@
 "use client";
 
+import { memo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
@@ -12,7 +13,7 @@ interface ProductCardProps {
     product: Product;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+function ProductCard({ product }: ProductCardProps) {
     const dispatch = useAppDispatch();
 
 
@@ -101,3 +102,5 @@ export default function ProductCard({ product }: ProductCardProps) {
         </article>
     );
 }
+
+export default memo(ProductCard);
