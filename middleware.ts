@@ -18,7 +18,10 @@ export function middleware(request: NextRequest) {
         Boolean(request.cookies.get("accessToken")?.value) ||
         Boolean(request.cookies.get("refreshToken")?.value);
 
-    if (!hasSession && !AUTH_ROUTES.has(pathname) && !PUBLIC_ROUTES.has(pathname)) {
+    const isPublicRoute =
+        PUBLIC_ROUTES.has(pathname) || pathname.startsWith("/product");
+
+    if (!hasSession && !AUTH_ROUTES.has(pathname) && !isPublicRoute) {
         const loginUrl = new URL("/login", request.url);
         return NextResponse.redirect(loginUrl);
     }
