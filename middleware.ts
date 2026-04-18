@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const AUTH_ROUTES = new Set(["/login", "/register"]);
-const PUBLIC_ROUTES = new Set(["/"]);
+const PUBLIC_ROUTES = new Set(["/", "/cart"]);
 
 function isPublicAsset(pathname: string) {
     return pathname.startsWith("/_next") || pathname.includes(".");
