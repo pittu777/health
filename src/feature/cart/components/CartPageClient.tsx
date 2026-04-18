@@ -5,6 +5,7 @@ import { ShoppingCart } from "lucide-react";
 import StoreLayoutHeader from "@/feature/navbar/components/Header";
 import StoreLayoutShell from "@/components/layout/StoreLayoutShell";
 import { useCart } from "../hooks/useCart";
+import type { CartItem as CartItemType } from "@/store/cartSlice";
 import CartItem from "./CartItem";
 import CartSummary from "./CartSummary";
 import CartSkeleton from "./CartSkeleton";
@@ -57,7 +58,7 @@ function CartHeader({ itemCount }: { itemCount: number }) {
     );
 }
 
-function CartItemsList({ items, isMounted }: { items: any[], isMounted: boolean }) {
+function CartItemsList({ items, isMounted }: { items: CartItemType[]; isMounted: boolean }) {
     return (
         <section className="rounded-[22px] bg-white p-6 shadow-[0_20px_35px_-30px_rgba(15,23,42,0.45)]">
             {!isMounted ? (

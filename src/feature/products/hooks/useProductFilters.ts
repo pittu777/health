@@ -58,9 +58,18 @@ export function useProductFilters() {
         });
     }, [pushFilters, category, priceRange, localSearch]);
 
-    const handlePriceChange = useCallback((value: number) => {
-        setPriceRange(value);
-    }, []);
+    const handlePriceChange = useCallback(
+        (value: number) => {
+            setPriceRange(value);
+            pushFilters({
+                category,
+                brand,
+                price: String(value),
+                search: localSearch,
+            });
+        },
+        [pushFilters, category, brand, localSearch]
+    );
 
     return {
         localSearch,

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useMemo } from "react";
 import type { Product } from "@/lib/products";
 import { getUniqueBrands, getUniqueCategories } from "@/lib/products";
 import StoreLayoutHeader from "@/feature/navbar/components/Header";
@@ -94,7 +94,7 @@ function ProductListingGrid() {
 export default function ProductListingClient({
     products,
 }: ProductListingClientProps) {
-    const [isLoading, setIsLoading] = useState(true);
+    const isLoading = false;
 
     const {
         localSearch,
@@ -116,13 +116,14 @@ export default function ProductListingClient({
         priceRange
     );
 
-    useEffect(() => {
-        const timer = setTimeout(() => setIsLoading(false), 800);
-        return () => clearTimeout(timer);
-    }, []);
-
-    const categories = ["All", ...getUniqueCategories()];
-    const brands = ["All", ...getUniqueBrands()];
+    const categories = useMemo(
+        () => ["All", ...getUniqueCategories(products)],
+        [products]
+    );
+    const brands = useMemo(
+        () => ["All", ...getUniqueBrands(products)],
+        [products]
+    );
 
     const contextValue: ProductListingContextType = {
         localSearch,

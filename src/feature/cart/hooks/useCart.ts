@@ -12,11 +12,13 @@ export function useCart() {
         [items]
     );
 
-    const itemCount = useMemo(() => items.length, [items]);
+    const itemCount = useMemo(
+        () => items.reduce((sum, item) => sum + item.quantity, 0),
+        [items]
+    );
 
     useEffect(() => {
-        const timer = setTimeout(() => setIsMounted(true), 100);
-        return () => clearTimeout(timer);
+        setIsMounted(true);
     }, []);
 
     return {

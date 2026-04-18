@@ -53,14 +53,6 @@ export default function Filters() {
                         onChange={(e) =>
                             handlePriceChange(Number(e.target.value))
                         }
-                        onMouseUp={() =>
-                            pushFilters({
-                                category,
-                                brand,
-                                price: String(priceRange),
-                                search: localSearch,
-                            })
-                        }
                         className="mt-4 w-full accent-white"
                     />
                     <div className="mt-1 flex justify-between text-sm text-white">

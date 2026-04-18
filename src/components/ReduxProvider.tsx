@@ -1,6 +1,6 @@
 "use client";
 
-import { PropsWithChildren, useEffect } from "react";
+import { PropsWithChildren, useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import { loadCart } from "@/store/cartSlice";
@@ -13,26 +13,31 @@ const CART_STORAGE_KEY = "health-cart";
 function CartStorageSync() {
     const dispatch = useAppDispatch();
     const items = useAppSelector((state) => state.cart.items);
+    const [hasLoadedCart, setHasLoadedCart] = useState(false);
 
     useEffect(() => {
         const raw = window.localStorage.getItem(CART_STORAGE_KEY);
-        if (!raw) {
-            return;
-        }
-
-        try {
-            const parsed = JSON.parse(raw) as unknown;
-            if (Array.isArray(parsed)) {
-                dispatch(loadCart(parsed));
+        if (raw) {
+            try {
+                const parsed = JSON.parse(raw) as unknown;
+                if (Array.isArray(parsed)) {
+                    dispatch(loadCart(parsed));
+                }
+            } catch {
+                // Ignore invalid stored cart data.
             }
-        } catch {
-
         }
+
+        setHasLoadedCart(true);
     }, [dispatch]);
 
     useEffect(() => {
+        if (!hasLoadedCart) {
+            return;
+        }
+
         window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(items));
-    }, [items]);
+    }, [items, hasLoadedCart]);
 
     return null;
 }

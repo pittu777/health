@@ -21,9 +21,7 @@ export default function ProductDetailClient({
     const [quantity, setQuantity] = useState(1);
 
     const handleAddToCart = () => {
-        for (let index = 0; index < quantity; index += 1) {
-            dispatch(addItem(product));
-        }
+        dispatch(addItem({ product, quantity }));
     };
 
     return (

@@ -180,10 +180,10 @@ export function getProductById(id: string) {
     return products.find((product) => product.id === id);
 }
 
-export function getUniqueCategories() {
-    return Array.from(new Set(products.map((product) => product.category)));
+export function getUniqueCategories(productsList: Product[] = products) {
+    return Array.from(new Set(productsList.map((product) => product.category)));
 }
 
-export function getUniqueBrands() {
-    return Array.from(new Set(products.map((product) => product.brand)));
+export function getUniqueBrands(productsList: Product[] = products) {
+    return Array.from(new Set(productsList.map((product) => product.brand)));
 }
