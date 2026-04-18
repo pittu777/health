@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { UserCircle2 } from "lucide-react";
 import { useAppSelector } from "@/store/hooks";
+import { useIsMounted } from "@/hooks/useIsMounted";
 
 interface ProfileButtonProps {
     isMobile?: boolean;
@@ -11,14 +11,10 @@ interface ProfileButtonProps {
 }
 
 export default function ProfileButton({ isMobile = false, onMobileClick }: ProfileButtonProps) {
-    const [isMounted, setIsMounted] = useState(false);
+    const isMounted = useIsMounted();
 
     const currentUser = useAppSelector((state) => state.user.currentUser);
     const userInitial = currentUser?.name?.trim().charAt(0).toUpperCase() ?? "U";
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
 
     const baseClasses = isMobile
         ? "flex h-11 min-w-11 items-center justify-center rounded-full bg-[#093e82] px-3 text-white transition hover:bg-[#08356f]"

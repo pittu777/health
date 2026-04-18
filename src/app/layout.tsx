@@ -30,7 +30,6 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        suppressHydrationWarning={true}
         className={`${montserrat.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <ReduxProvider

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { useHeaderState } from "../hooks/useHeaderState";
+import { useIsMounted } from "@/hooks/useIsMounted";
 import SearchInput from "./SearchInput";
 import CartButton from "./CartButton";
 import ProfileButton from "./ProfileButton";
@@ -17,6 +18,7 @@ export default function StoreLayoutHeader({
     searchValue = "",
     onSearchChange,
 }: StoreLayoutHeaderProps) {
+    const isMounted = useIsMounted();
     const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useHeaderState();
 
     const handleSearchInput = (value: string) => {
@@ -42,8 +44,12 @@ export default function StoreLayoutHeader({
                 </div>
 
                 <div className="hidden items-center gap-3 md:flex">
-                    <CartButton />
-                    <ProfileButton />
+                    {isMounted && (
+                        <>
+                            <CartButton />
+                            <ProfileButton />
+                        </>
+                    )}
                 </div>
 
                 <button

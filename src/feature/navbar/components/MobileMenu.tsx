@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { useIsMounted } from "@/hooks/useIsMounted";
 import SearchInput from "./SearchInput";
 import CartButton from "./CartButton";
 import ProfileButton from "./ProfileButton";
@@ -12,6 +14,8 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ isOpen, searchValue, onSearchChange, onClose }: MobileMenuProps) {
+    const isMounted = useIsMounted();
+
     if (!isOpen) return null;
 
     return (
@@ -23,8 +27,12 @@ export default function MobileMenu({ isOpen, searchValue, onSearchChange, onClos
             />
 
             <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-3">
-                <CartButton isMobile onMobileClick={onClose} />
-                <ProfileButton isMobile onMobileClick={onClose} />
+                {isMounted && (
+                    <>
+                        <CartButton isMobile onMobileClick={onClose} />
+                        <ProfileButton isMobile onMobileClick={onClose} />
+                    </>
+                )}
             </div>
         </div>
     );

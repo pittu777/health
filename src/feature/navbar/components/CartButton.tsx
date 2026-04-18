@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import { ShoppingCart } from "lucide-react";
 import { useAppSelector } from "@/store/hooks";
+import { useIsMounted } from "@/hooks/useIsMounted";
 
 interface CartButtonProps {
     isMobile?: boolean;
@@ -11,15 +11,11 @@ interface CartButtonProps {
 }
 
 export default function CartButton({ isMobile = false, onMobileClick }: CartButtonProps) {
-    const [isMounted, setIsMounted] = useState(false);
+    const isMounted = useIsMounted();
 
     const cartQuantity = useAppSelector((state) =>
         state.cart.items.reduce((sum, item) => sum + item.quantity, 0)
     );
-
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
 
     const baseClasses = isMobile
         ? "inline-flex items-center justify-center gap-2 rounded-lg bg-[#093e82] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#08356f]"
